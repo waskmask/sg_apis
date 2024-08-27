@@ -5,13 +5,19 @@ const cookieParser = require("cookie-parser");
 const userRoutes = require("./modules/user/userRoutes");
 const cors = require("cors");
 const app = express();
-app.use(cors({ origin: ["http://localhost:5000", "https://sugar-list.de"] }));
-// app.options("*", cors());
+// app.use(cors({ origin: ["http://localhost:5000", "https://sugar-list.de"] }));
+app.options('*', cors());
 
-mongoose.connect(process.env.MONGO_DB_LOCAL);
+mongoose.connect(process.env.MONGO_DB_PROD, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // Increase to 30 seconds
+  socketTimeoutMS: 45000,          // Increase to 45 seconds
+});
+
 
 mongoose.connection.on("connected", () => {
-  console.log("Mongoose connected to " + process.env.MONGO_DB_LOCAL);
+  console.log("Mongoose connected to " + process.env.MONGO_DB_PROD);
 });
 
 mongoose.connection.on("error", (err) => {
