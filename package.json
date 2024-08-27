@@ -2,7 +2,7 @@
   "name": "sugar_list_rest_apis",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "node --max-old-space-size=4096 app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
