@@ -33,14 +33,9 @@ coverage/
 
 # Bower dependency directory
 bower_components/
+ 
 
-# Compiled source
-dist/
-build/
-
-# Generated files
-*.d.ts
-*.js
+ 
 
 # Temporary files
 .tmp/
