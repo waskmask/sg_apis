@@ -221,8 +221,13 @@ exports.registerUser = async (req, res) => {
 
     await newUser.save();
 
-    // Send verification email
-    const emailResult = await sendVerificationEmail(email, verificationCode);
+    // Send verification email with the HTML template
+    const emailResult = await sendVerificationEmail(
+      email,
+      verificationCode,
+      username
+    );
+
     if (!emailResult.success) {
       console.error("Error sending verification email:", emailResult.error);
       return res.status(201).json({
